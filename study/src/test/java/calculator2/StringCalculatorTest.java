@@ -3,7 +3,9 @@ package calculator2;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 
 public class StringCalculatorTest {
 
@@ -29,28 +31,28 @@ public class StringCalculatorTest {
     @Test
     public void 덧셈() {
         int result = cal.calculator("1 + 3");
-        assertThat(result).isEqualTo(4);
+        assertThat(result, is(4));
     }
     @Test
     public void 뺄셈() {
         int result = cal.calculator("6 - 3");
-        assertThat(result).isEqualTo(3);
+        assertThat(result, is(3));
     }
     @Test
     public void 곱셈() {
         int result = cal.calculator("1 * 3");
-        assertThat(result).isEqualTo(3);
+        assertThat(result, is(3));
     }
     @Test
     public void 나눗셈() {
         int result = cal.calculator("4 / 2");
-        assertThat(result).isEqualTo(2);
+        assertThat(result, is(2));
     }
 
 
     @Test
     public void 사칙연산() {
         int result = cal.calculator("2 + 3 * 4 / 2");
-        assertThat(result).isEqualTo(10);
+        assertThat(result, is(10));
     }
 }
