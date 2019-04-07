@@ -4,10 +4,12 @@ package com.tdd.blackjack.model.person;
 import com.tdd.blackjack.model.card.Card;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Dealer{
 
     private Cards cards;
+    private Optional<Card> card;
 
     private final int DEALER_CONDITION_HIT = 17;
 
@@ -20,6 +22,11 @@ public class Dealer{
     }
 
     public void receive(Card sendCard) {
+
+
+        card.orElseGet()
+
+
         if(DEALER_CONDITION_HIT < cards.calculatorScore(this.cards.getCards())){
             throw new IllegalArgumentException(":: 딜러 :: 더이상 받을 수 없습니다");
         }
@@ -41,4 +48,6 @@ public class Dealer{
                 "Cards=" + this.cards.toString()  + "\n" +
                 "}";
     }
+
+
 }
