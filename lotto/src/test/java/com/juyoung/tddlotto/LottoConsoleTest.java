@@ -1,21 +1,41 @@
 package com.juyoung.tddlotto;
 
 
+import com.juyoung.tddlotto.model.Lotto;
+import com.juyoung.tddlotto.model.LottoMachine;
+import com.juyoung.tddlotto.model.Result;
+import org.junit.Test;
+
+import java.util.List;
+import java.util.Scanner;
+
+import static java.util.Arrays.asList;
 
 public class LottoConsoleTest {
 
-    //1. 로또 1~45 숫자 생성 ( 6ro +1 )
-
-    // 1~45 숫자로
-
-    // 6객가의
-
-
-
-
+    @Test
+    public void 당첨번호_생성() {
+        LottoMachine lottoMachine = new LottoMachine();
+//        Lotto winLotto = lottoMachine.createUniqueRandomLotto();
+        Lotto winLotto = lottoMachine.createLotto(1,2,3,4,5,6);
+        System.out.println("=======당첨번호==========");
+        System.out.println(winLotto.toString());
 
 
-    //2. 랜덤으로 숫자 추출
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("============= 로또를 몇개 구매하시겠습니까? =============");
+//        int buy = scanner.nextInt();
+        int buy = 5;
 
-    //3.
+//        List<Lotto> buyLottos = lottoMachine.createLottoByCount(buy);
+        List<Lotto> buyLottos = asList(lottoMachine.createLotto(1,2,3,4,5,6));
+
+        System.out.println("============= 당첨 확인 =============");
+        for (Lotto lotto : buyLottos) {
+            System.out.println("======= lotto =====" + lotto.toString());
+            Result result = new Result(winLotto, lotto);
+            System.out.println(result.toString());
+        }
+
+    }
 }

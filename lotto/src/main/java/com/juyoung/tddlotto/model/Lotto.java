@@ -6,12 +6,15 @@ public class Lotto {
 
     static int LOTTO_SIZE = 6;
 
-    List<LottoNumber> numbers;
+    private List<LottoNumber> numbers;
+
+    public Lotto(Lotto lotto) {
+        this.numbers = lotto.getNumbers();
+    }
 
     public Lotto(List<LottoNumber> numbers) {
         validateDuplication(numbers);
         validateSize(numbers);
-
         this.numbers = numbers;
     }
 
@@ -22,7 +25,7 @@ public class Lotto {
     }
 
     private void validateSize(List<LottoNumber> numbers) {
-        if(numbers.size() !=  LOTTO_SIZE){
+        if(numbers.size() > LOTTO_SIZE){
             throw new IllegalArgumentException("로또 숫자는 6개만 가능합니다.");
         }
     }
@@ -35,4 +38,15 @@ public class Lotto {
         return this.numbers;
     }
 
+    public int match(Lotto other) {
+        List<LottoNumber> otherNumbers = other.getNumbers();
+        return Math.toIntExact(otherNumbers.stream().filter(x -> this.getNumbers().contains(x)).count());
+    }
+
+    @Override
+    public String toString() {
+        return "Lotto{" +
+                "numbers=" + numbers +
+                '}';
+    }
 }
