@@ -13,17 +13,15 @@ public class LottoMachineTest {
     public void 랜덤한_6개의_숫자를_생성한다() {
         int expected = 6;
         LottoMachine lottoMachine = new LottoMachine();
-        Lotto lotto = lottoMachine.createLotto(1, 2, 3, 4, 5, 6);
+        Lotto lotto = lottoMachine.createDirectLotto(1, 2, 3, 4, 5, 6);
         assertThat(lotto.size()).isEqualTo(expected);
     }
 
     @Test
     public void 랜덤한_숫자를_중복_안되게_생성한다() {
         int countNumbers = 6;
-
         LottoMachine lottoMachine = new LottoMachine();
         Lotto result = lottoMachine.createUniqueRandomLotto();
-
         assertThat(result.size()).isEqualTo(countNumbers);
     }
 

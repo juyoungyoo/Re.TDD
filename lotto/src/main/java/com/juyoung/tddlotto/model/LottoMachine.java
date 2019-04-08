@@ -12,19 +12,21 @@ public class LottoMachine {
         this.random = new Random();
     }
 
-    public Lotto createLotto(int... numbers) {
+    public Lotto createDirectLotto(int... numbers) {
         List<LottoNumber> lottoNumbers = new ArrayList<>();
         for (int number : numbers) {
             LottoNumber lottoNumber = createLottoNumber(number);
             lottoNumbers.add(lottoNumber);
         }
-        return createLotto(lottoNumbers);
+        return this.createLotto(lottoNumbers);
     }
 
     public List<Lotto> createLottoByCount(int cnt) {
         List<Lotto> lottos = new ArrayList<>();
         while (cnt > lottos.size()) {
-            lottos.add(this.createUniqueRandomLotto());
+            try {
+                lottos.add(this.createUniqueRandomLotto());
+            } catch (Exception e) {}
         }
         return lottos;
     }
@@ -34,7 +36,8 @@ public class LottoMachine {
         while (Lotto.LOTTO_SIZE > lottoNumbers.size()) {
             try {
                 lottoNumbers.add(this.createRandomNumber());
-            } catch (Exception e) { }
+            } catch (IllegalArgumentException e) {
+            }
         }
         return createLotto(lottoNumbers);
     }
@@ -48,9 +51,7 @@ public class LottoMachine {
     }
 
     private LottoNumber createLottoNumber(int i) {
-        LottoNumber lottoNumber = new LottoNumber(i);
-        lottoNumber.createNumber(i);
-        return lottoNumber;
+        return LottoNumber.createNumber(i);
     }
 
 

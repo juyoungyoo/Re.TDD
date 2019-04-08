@@ -16,6 +16,7 @@ public class LottoTest {
         return number.createNumber(e);
     }
 
+    // First create test method
     @Test
     public void 로또는_6개의_숫자를_가진다() {
 //        List<Integer> numbers = IntStream.rangeClosed(1,6).boxed().collect(Collectors.toList());
@@ -58,7 +59,7 @@ public class LottoTest {
         return new Lotto(numbers);
     }
 
-    public static List<LottoNumber> ofLottoNumbers(int... numbers){
+    public static List<LottoNumber> ofLottoNumbers(int... numbers) {
         return Arrays.stream(numbers).mapToObj(LottoTest::apply).collect(toList());
     }
 

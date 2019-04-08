@@ -19,12 +19,14 @@ public class ResultTest {
         assertThat(result.getRank()).isEqualTo(Prize.SECOND.name());
         assertThat(result.getPrize()).isEqualTo(Prize.SECOND.getMoney());
     }
+
     @Test
     public void 로또번호가_다섯개_일치한다_3등() {
         Result result = ofResult(1, 2, 3, 4, 8, 9);
         assertThat(result.getRank()).isEqualTo(Prize.THIRD.name());
         assertThat(result.getPrize()).isEqualTo(Prize.THIRD.getMoney());
     }
+
     @Test
     public void 로또번호가_다섯개_일치한다_4등() {
         Result result = ofResult(1, 2, 3, 10, 8, 9);

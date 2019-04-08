@@ -5,31 +5,33 @@ public class Result {
     private String rank;
     private int price;
 
-    public Result(Lotto winLotto, Lotto buy) {
-        this.calculatedRank(winLotto, buy);
-        this.calculatedPrize(winLotto, buy);
+    public Result(Lotto winLotto,
+                  Lotto buy) {
+        int matchCount = getMatchNumber(winLotto, buy);
+        this.calculatedRank(matchCount);
+        this.calculatedPrize(matchCount);
     }
 
-    public void calculatedRank(Lotto winLotto, Lotto other) {
-        int matchNumber = getMatchNumber(winLotto, other);
+    public void calculatedRank(int matchCount) {
         for (Prize prize : Prize.values()) {
-            if(prize.getIsMatchCount() == matchNumber){
+            if (prize.getIsMatchCount() == matchCount) {
                 this.rank = prize.name();
             }
         }
     }
 
-    public void calculatedPrize(Lotto winLotto, Lotto other) {
-        int matchNumber = getMatchNumber(winLotto, other);
+    public void calculatedPrize(int matchCount) {
         for (Prize prize : Prize.values()) {
-            if(prize.getIsMatchCount() == matchNumber){
+            if (prize.getIsMatchCount() == matchCount) {
                 this.price = prize.getMoney();
             }
         }
     }
 
-    private int getMatchNumber(Lotto winLotto, Lotto other) {
-        return winLotto.match(other);
+    private int getMatchNumber(Lotto winLotto,
+                               Lotto other) {
+        Lotto lotto = new Lotto(winLotto);
+        return lotto.match(other);
     }
 
     public String getRank() {

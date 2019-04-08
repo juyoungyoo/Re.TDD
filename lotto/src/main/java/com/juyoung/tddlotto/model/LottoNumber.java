@@ -8,9 +8,10 @@ public class LottoNumber {
     static int MAX_LOTTO_NUMBER = 45;
 
     private int number;
-    private static HashMap<Integer,LottoNumber> existNumber = new HashMap<>();
+    private static final HashMap<Integer, LottoNumber> existNumber = new HashMap<>();
 
-    public LottoNumber(){}
+
+    public LottoNumber(){ }
 
     public LottoNumber(int number) {
         this.validateNumber(number);
@@ -18,16 +19,19 @@ public class LottoNumber {
     }
 
     private void validateNumber(int number) {
-        if(number < MIN_LOTTO_NUMBER|| number > MAX_LOTTO_NUMBER){
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(MIN_LOTTO_NUMBER + " ~ " + MAX_LOTTO_NUMBER + "숫자만 가능합니다");
         }
     }
 
-    public LottoNumber createNumber(int number) {
+    public static LottoNumber createNumber(int number) {
         if (!existNumber.containsKey(number)) {
-            existNumber.put(number, new LottoNumber(number));
+            LottoNumber lottoNumber = new LottoNumber(number);
+            existNumber.put(number, lottoNumber);
+            return lottoNumber;
+        } else {
+            return existNumber.get(number);
         }
-        return existNumber.get(number);
     }
 
     @Override

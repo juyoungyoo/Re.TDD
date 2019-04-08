@@ -6,13 +6,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoNumberTest {
 
-    // todo : question
+    // todo : homework
     @Test
     public void 로또번호를_생성한다() {
         LottoNumber lottoNumber = new LottoNumber();
         lottoNumber.createNumber(1);
         assertThat(lottoNumber.createNumber(1)).isEqualTo(lottoNumber.createNumber(1));
-//        assertThat(new LottoNumber(1)).isEqualTo(new LottoNumber(1));
     }
 
     @Test(expected = IllegalArgumentException.class)
