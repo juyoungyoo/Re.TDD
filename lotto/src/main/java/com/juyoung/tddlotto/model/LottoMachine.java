@@ -24,26 +24,27 @@ public class LottoMachine {
     public List<Lotto> createLottoByCount(int cnt) {
         List<Lotto> lottos = new ArrayList<>();
         while (cnt > lottos.size()) {
-            try {
-                lottos.add(this.createUniqueRandomLotto());
-            } catch (Exception e) {}
+           lottos.add(this.createUniqueRandomLotto());
         }
         return lottos;
     }
 
+
     public Lotto createUniqueRandomLotto() {
         List<LottoNumber> lottoNumbers = new ArrayList<>();
         while (Lotto.LOTTO_SIZE > lottoNumbers.size()) {
-            try {
-                lottoNumbers.add(this.createRandomNumber());
-            } catch (IllegalArgumentException e) {
-            }
+            lottoNumbers.add(this.createRandomNumber());
         }
-        return createLotto(lottoNumbers);
+        try{
+            return new Lotto(lottoNumbers);
+        }catch (Exception e){
+            return this.createUniqueRandomLotto();
+        }
     }
 
     private Lotto createLotto(List<LottoNumber> lottoNumbers) {
-        return new Lotto(lottoNumbers);
+        Lotto lotto = new Lotto(lottoNumbers);
+        return lotto;
     }
 
     private LottoNumber createRandomNumber() {
@@ -51,7 +52,7 @@ public class LottoMachine {
     }
 
     private LottoNumber createLottoNumber(int i) {
-        return LottoNumber.createNumber(i);
+        return LottoNumber.of(i);
     }
 
 

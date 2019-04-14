@@ -10,10 +10,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LottoMachineTest {
 
     @Test
-    public void 랜덤한_6개의_숫자를_생성한다() {
+    public void 직접_입력한_숫자를_생성한다() {
         int expected = 6;
         LottoMachine lottoMachine = new LottoMachine();
-        Lotto lotto = lottoMachine.createDirectLotto(1, 2, 3, 4, 5, 6);
+        Lotto lotto = lottoMachine.createDirectLotto(1 , 2, 3, 4, 5, 6);
         assertThat(lotto.size()).isEqualTo(expected);
     }
 

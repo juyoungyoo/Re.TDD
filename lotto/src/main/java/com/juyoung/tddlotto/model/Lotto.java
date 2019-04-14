@@ -40,9 +40,10 @@ public class Lotto {
         return this.numbers;
     }
 
-    public int match(Lotto other) {
-        List<LottoNumber> otherNumbers = other.getNumbers();
-        return Math.toIntExact(otherNumbers.stream().filter(x -> this.numbers.contains(x)).count());
+    public Prize match(Lotto other) {
+        List<LottoNumber> otherNumbers = other.numbers;
+        int matchCount = (int) otherNumbers.stream().filter(number -> this.numbers.contains(number)).count();
+        return Prize.of(matchCount);
     }
 
     @Override
