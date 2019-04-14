@@ -4,9 +4,9 @@ package com.juyoung.tddlotto.model;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoTest {
@@ -25,13 +25,7 @@ public class LottoTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void 로또개수가_6개가_아닌경우_실패한다() {
-        List<LottoNumber> lottoNumbers = ofLottoNumbers(1, 2, 3, 4, 5, 6, 7);
-        new Lotto(lottoNumbers);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void 로또는_중복이면_안된다() {
-        List<LottoNumber> lottoNumbers = ofLottoNumbers(1, 2, 3, 4, 4, 6);
+        Set<LottoNumber> lottoNumbers = ofLottoNumbers(1, 2, 3, 4, 5, 6, 7);
         new Lotto(lottoNumbers);
     }
 
@@ -42,8 +36,7 @@ public class LottoTest {
 
         Prize result = lotto.match(other);
 
-        assertThat(result.getRank()).isEqualTo(Prize.FIRST.getRank());
-        assertThat(result.getMoney()).isEqualTo(Prize.FIRST.getMoney());
+        assertThat(result).isEqualTo(Prize.FIRST);
     }
 
     @Test
@@ -53,17 +46,16 @@ public class LottoTest {
 
         Prize result = lotto.match(other);
 
-        assertThat(result.getRank()).isEqualTo(Prize.THIRD.getRank());
-        assertThat(result.getMoney()).isEqualTo(Prize.THIRD.getMoney());
+        assertThat(result).isEqualTo(Prize.THIRD);
     }
 
     protected static Lotto ofLotto(int... lottoNumbers) {
-        List<LottoNumber> numbers = ofLottoNumbers(lottoNumbers);
+        Set<LottoNumber> numbers = ofLottoNumbers(lottoNumbers);
         return new Lotto(numbers);
     }
 
-    public static List<LottoNumber> ofLottoNumbers(int... numbers) {
-        return Arrays.stream(numbers).mapToObj(LottoTest::apply).collect(toList());
+    public static Set<LottoNumber> ofLottoNumbers(int... numbers) {
+        return Arrays.stream(numbers).mapToObj(LottoTest::apply).collect(Collectors.toSet());
     }
 
 }

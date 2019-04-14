@@ -20,7 +20,7 @@ public class LottoConsoleTest {
         System.out.println(winLotto.toString());
         Scanner scanner = new Scanner(System.in);
         System.out.println("============= 로또를 몇개 구매하시겠습니까? =============");
-        int buy = 2;
+        int buy = 5;
 
         List<Lotto> buyLottos = lottoMachine.createLottoByCount(buy);
         System.out.println("============= 당첨 확인 =============");

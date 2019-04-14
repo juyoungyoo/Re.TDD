@@ -1,6 +1,6 @@
 package com.juyoung.tddlotto.model;
 
-import java.util.List;
+import java.util.Set;
 
 
 // 로또 티켓 6개
@@ -8,26 +8,15 @@ public class Lotto {
 
     static int LOTTO_SIZE = 6;
 
-    private List<LottoNumber> numbers;
+    private Set<LottoNumber> numbers;
 
-    public Lotto(Lotto lotto) {
-        this.numbers = lotto.getNumbers();
-    }
-
-    public Lotto(List<LottoNumber> numbers) {
-        validateDuplication(numbers);
+    public Lotto(Set<LottoNumber> numbers) {
         validateSize(numbers);
         this.numbers = numbers;
     }
 
-    private void validateDuplication(List<LottoNumber> numbers) {
-        if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("로또 숫자가 중복되었습니다.");
-        }
-    }
-
-    private void validateSize(List<LottoNumber> numbers) {
-        if (numbers.size() > LOTTO_SIZE) {
+    private void validateSize(Set<LottoNumber> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("로또 숫자는 6개만 가능합니다.");
         }
     }
@@ -36,12 +25,8 @@ public class Lotto {
         return numbers.size();
     }
 
-    public List<LottoNumber> getNumbers() {
-        return this.numbers;
-    }
-
     public Prize match(Lotto other) {
-        List<LottoNumber> otherNumbers = other.numbers;
+        Set<LottoNumber> otherNumbers = other.numbers;
         int matchCount = (int) otherNumbers.stream().filter(number -> this.numbers.contains(number)).count();
         return Prize.of(matchCount);
     }

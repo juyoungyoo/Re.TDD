@@ -1,8 +1,6 @@
 package com.juyoung.tddlotto.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class LottoMachine {
 
@@ -13,7 +11,7 @@ public class LottoMachine {
     }
 
     public Lotto createDirectLotto(int... numbers) {
-        List<LottoNumber> lottoNumbers = new ArrayList<>();
+        Set<LottoNumber> lottoNumbers = new HashSet<>();
         for (int number : numbers) {
             LottoNumber lottoNumber = createLottoNumber(number);
             lottoNumbers.add(lottoNumber);
@@ -29,22 +27,16 @@ public class LottoMachine {
         return lottos;
     }
 
-
     public Lotto createUniqueRandomLotto() {
-        List<LottoNumber> lottoNumbers = new ArrayList<>();
+        Set<LottoNumber> lottoNumbers = new HashSet<>();
         while (Lotto.LOTTO_SIZE > lottoNumbers.size()) {
             lottoNumbers.add(this.createRandomNumber());
         }
-        try{
-            return new Lotto(lottoNumbers);
-        }catch (Exception e){
-            return this.createUniqueRandomLotto();
-        }
+        return createLotto(lottoNumbers);
     }
 
-    private Lotto createLotto(List<LottoNumber> lottoNumbers) {
-        Lotto lotto = new Lotto(lottoNumbers);
-        return lotto;
+    private Lotto createLotto(Set<LottoNumber> lottoNumbers) {
+        return new Lotto(lottoNumbers);
     }
 
     private LottoNumber createRandomNumber() {
