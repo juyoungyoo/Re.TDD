@@ -1,6 +1,6 @@
 package jump.to.java.interfacestudy;
 
-public class Tiger extends Animal implements Predator, Barkable {
+public class Tiger extends Animal implements BarkablePredator {
 
     @Override
     public String getFood() {
