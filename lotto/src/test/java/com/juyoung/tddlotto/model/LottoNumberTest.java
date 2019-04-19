@@ -2,7 +2,6 @@ package com.juyoung.tddlotto.model;
 
 import org.junit.Test;
 
-
 public class LottoNumberTest {
 
     @Test(expected = IllegalArgumentException.class)
@@ -13,5 +12,6 @@ public class LottoNumberTest {
     @Test(expected = IllegalArgumentException.class)
     public void 로또숫자가_1미만일경우_실패한다() {
         LottoNumber.of(0);
+
     }
 }

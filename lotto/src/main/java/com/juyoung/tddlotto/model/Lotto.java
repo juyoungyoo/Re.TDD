@@ -1,21 +1,24 @@
 package com.juyoung.tddlotto.model;
 
-import java.util.Set;
+import java.util.List;
 
-
-// 로또 티켓 6개
 public class Lotto {
 
     static int LOTTO_SIZE = 6;
+    private List<LottoNumber> numbers;
 
-    private Set<LottoNumber> numbers;
+    public Lotto() {
+        LottoNumbers lottoNumbers = LottoNumbers.of();
+        lottoNumbers.shuffle();
+        this.numbers = lottoNumbers.peek(6);
+    }
 
-    public Lotto(Set<LottoNumber> numbers) {
+    public Lotto(List<LottoNumber> numbers) {
         validateSize(numbers);
         this.numbers = numbers;
     }
 
-    private void validateSize(Set<LottoNumber> numbers) {
+    private void validateSize(List<LottoNumber> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("로또 숫자는 6개만 가능합니다.");
         }
@@ -26,7 +29,7 @@ public class Lotto {
     }
 
     public Prize match(Lotto other) {
-        Set<LottoNumber> otherNumbers = other.numbers;
+        List<LottoNumber> otherNumbers = other.numbers;
         int matchCount = (int) otherNumbers.stream().filter(number -> this.numbers.contains(number)).count();
         return Prize.of(matchCount);
     }

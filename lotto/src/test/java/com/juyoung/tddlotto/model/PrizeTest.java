@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PrizeTest {
 
     @Test
-    public void 번호가_6개_모두_일치할때_1등이다() {
+    public void 당첨번호와_일치하는_번호갯수에_따른_결과확인() {
         assertThat(Prize.of(6)).isEqualTo(Prize.FIRST);
         assertThat(Prize.of(5)).isEqualTo(Prize.SECOND);
         assertThat(Prize.of(4)).isEqualTo(Prize.THIRD);

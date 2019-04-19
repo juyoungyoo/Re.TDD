@@ -4,13 +4,13 @@ import java.util.Arrays;
 
 public enum Prize {
 
-    FIRST(6, 100_000),
-    SECOND(5, 10_000),
-    THIRD(4, 1_000),
-    FOURTH(3, 100),
-    FIFTH(2, 10),
-    SIX(1, 0),
-    NONE(0, 0);
+    FIRST (6, 1_000_000),
+    SECOND (5, 500_000),
+    THIRD (4, 200_000),
+    FOURTH (3, 50_000),
+    FIFTH (2, 5_000),
+    SIX (1, 0),
+    NONE (0, 0);
 
     private int matchCount;
     private int money;
@@ -22,25 +22,16 @@ public enum Prize {
     }
 
     public static Prize of(int matchCount) {
-        return Arrays.stream(Prize.values())
-                .filter(prize -> prize.matchCount == matchCount)
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
-
-    public String getRank(){
-        return this.name();
-    }
-
-    public int getMoney() {
-        return this.money;
+        return Arrays.stream (Prize.values ())
+                .filter (prize -> prize.matchCount == matchCount)
+                .findFirst ()
+                .orElseThrow (IllegalArgumentException::new);
     }
 
     @Override
     public String toString() {
         return "Prize{" +
-                "rank=" + this.ordinal() +
+                "rank=" + this.name () +
                 ", matchCount=" + matchCount +
                 ", money=" + money +
                 '}';
