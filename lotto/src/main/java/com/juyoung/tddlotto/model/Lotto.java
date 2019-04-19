@@ -7,15 +7,16 @@ public class Lotto {
     static int LOTTO_SIZE = 6;
     private List<LottoNumber> numbers;
 
-    public Lotto() {
-        LottoNumbers lottoNumbers = LottoNumbers.of();
-        lottoNumbers.shuffle();
-        this.numbers = lottoNumbers.peek(6);
-    }
-
-    public Lotto(List<LottoNumber> numbers) {
+    protected Lotto(List<LottoNumber> numbers) {
         validateSize(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto of(){
+        LottoNumbers lottoNumbers = LottoNumbers.of();
+        lottoNumbers.shuffle();
+        List<LottoNumber> list = lottoNumbers.peek(LOTTO_SIZE);
+        return new Lotto(list);
     }
 
     private void validateSize(List<LottoNumber> numbers) {

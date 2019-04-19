@@ -13,7 +13,7 @@ public class LottoTest {
 
     @Test
     public void 로또는_6개의_로또넘버를_생성한다() {
-        Lotto lotto = new Lotto();
+        Lotto lotto = Lotto.of();
         assertThat (lotto.size()).isEqualTo(6);
     }
 
@@ -50,7 +50,7 @@ public class LottoTest {
 
     protected static Lotto ofLotto(int... lottoNumbers) {
         List<LottoNumber> numbers = ofLottoNumbers (lottoNumbers);
-        return new Lotto (numbers);
+        return new Lotto(numbers);
     }
 
     private static List<LottoNumber> ofLottoNumbers(int... numbers) {

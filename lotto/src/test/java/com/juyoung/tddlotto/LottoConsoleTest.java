@@ -13,7 +13,7 @@ public class LottoConsoleTest {
     public void 당첨번호_생성() {
         LottoMachine lottoMachine = new LottoMachine();
 
-        Lotto winLotto = new Lotto ();
+        Lotto winLotto = Lotto.of();
         System.out.println ("===========당첨번호========");
         System.out.println (winLotto.toString ());
 
