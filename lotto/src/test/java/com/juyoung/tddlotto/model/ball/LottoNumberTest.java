@@ -1,5 +1,6 @@
 package com.juyoung.tddlotto.model.ball;
 
+import com.juyoung.tddlotto.model.LottoNumber;
 import org.junit.Test;
 
 public class LottoNumberTest {

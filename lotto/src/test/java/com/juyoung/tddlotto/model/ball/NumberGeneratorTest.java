@@ -1,5 +1,6 @@
 package com.juyoung.tddlotto.model.ball;
 
+import com.juyoung.tddlotto.model.NumberGenerator;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

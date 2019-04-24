@@ -1,7 +1,5 @@
-package com.juyoung.tddlotto.model.lotto;
+package com.juyoung.tddlotto.model;
 
-import com.juyoung.tddlotto.model.ball.LottoNumber;
-import com.juyoung.tddlotto.model.ball.NumberGenerator;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -9,24 +7,24 @@ import java.util.List;
 import java.util.Objects;
 
 @Getter
-public class LottoWinning extends Lotto{
+public class WinningLotto extends Lotto{
 
     private static NumberGenerator numbersGenerator;
     private LottoNumber bonus;
 
-    public LottoWinning(List<LottoNumber> lottoNumbers, LottoNumber bonus) {
+    public WinningLotto(List<LottoNumber> lottoNumbers, LottoNumber bonus) {
         super(lottoNumbers);
         this.bonus = bonus;
     }
 
-    public LottoWinning(List<LottoNumber> lottoNumbers) {
+    public WinningLotto(List<LottoNumber> lottoNumbers) {
         super(lottoNumbers);
         this.bonus = numbersGenerator.peek(1).get(0);
     }
 
-    public static LottoWinning of(){
+    public static WinningLotto of(){
         numbersGenerator = NumberGenerator.of();
-        return new LottoWinning(numbersGenerator.peek(6));
+        return new WinningLotto(numbersGenerator.peek(6));
     }
 
     @Override

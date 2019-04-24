@@ -1,9 +1,12 @@
 package com.juyoung.tddlotto.model;
 
+import lombok.Getter;
+
 import java.util.Arrays;
 
-import static com.juyoung.tddlotto.model.lotto.Lotto.LOTTO_SIZE;
+import static com.juyoung.tddlotto.model.Lotto.LOTTO_SIZE;
 
+@Getter
 public enum Prize {
 
     FIRST(6, 100_000),
@@ -41,10 +44,6 @@ public enum Prize {
 
     @Override
     public String toString() {
-        return "Prize{" +
-                "rank=" + this.name() +
-                ", matchCount=" + matchCount +
-                ", money=" + money +
-                '}';
+        return this.name() + ", " + money + "원";
     }
 }

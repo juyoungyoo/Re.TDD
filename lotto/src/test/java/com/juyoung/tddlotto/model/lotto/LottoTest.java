@@ -1,8 +1,10 @@
 package com.juyoung.tddlotto.model.lotto;
 
 
+import com.juyoung.tddlotto.model.Lotto;
+import com.juyoung.tddlotto.model.LottoNumber;
 import com.juyoung.tddlotto.model.Prize;
-import com.juyoung.tddlotto.model.ball.LottoNumber;
+import com.juyoung.tddlotto.model.WinningLotto;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -33,7 +35,7 @@ public class LottoTest {
     @Test
     public void 로또번호_모두_일치() {
         Lotto lotto = ofLotto(1, 2, 3, 4, 5, 6);
-        LottoWinning lottoWinning = ofLottoWinning(new int[]{1, 2, 3, 4, 5, 6}, 10);
+        WinningLotto lottoWinning = ofLottoWinning(new int[]{1, 2, 3, 4, 5, 6}, 10);
 
         Prize result = lotto.result(lottoWinning);
 
@@ -43,7 +45,7 @@ public class LottoTest {
     @Test
     public void $2등_로또번호_5개_일치() {
         Lotto lotto = ofLotto(1, 2, 3, 4, 5, 6);
-        LottoWinning lottoWinning = ofLottoWinning(new int[]{1, 2, 3, 4, 5, 9}, 10);
+        WinningLotto lottoWinning = ofLottoWinning(new int[]{1, 2, 3, 4, 5, 9}, 10);
 
         Prize result = lotto.result(lottoWinning);
 
@@ -53,7 +55,7 @@ public class LottoTest {
     @Test
     public void $3등_로또번호_5개_일치_보너스_포함() {
         Lotto lotto = ofLotto(1, 2, 3, 4, 5, 6);
-        LottoWinning lottoWinning = ofLottoWinning(new int[]{1, 2, 3, 4, 7, 9}, 6);
+        WinningLotto lottoWinning = ofLottoWinning(new int[]{1, 2, 3, 4, 7, 9}, 6);
 
         Prize result = lotto.result(lottoWinning);
 

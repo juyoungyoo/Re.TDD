@@ -1,8 +1,5 @@
-package com.juyoung.tddlotto.model.lotto;
+package com.juyoung.tddlotto.model;
 
-import com.juyoung.tddlotto.model.Prize;
-import com.juyoung.tddlotto.model.ball.LottoNumber;
-import com.juyoung.tddlotto.model.ball.NumberGenerator;
 import lombok.Getter;
 
 import java.util.List;
@@ -15,6 +12,7 @@ public class Lotto{
 
     protected Lotto(List<LottoNumber> lottoNumbers) {
         validateSize(lottoNumbers);
+        lottoNumbers.sort(LottoNumber::compareTo);
         this.numbers = lottoNumbers;
     }
 
@@ -39,7 +37,7 @@ public class Lotto{
         return matchCount;
     }
 
-    public Prize result(LottoWinning winning) {
+    public Prize result(WinningLotto winning) {
         int match = winning.match(this);
         boolean bonus = winning.isExistBonus(this.getNumbers());
         return Prize.of(match, bonus);
@@ -47,9 +45,6 @@ public class Lotto{
 
     @Override
     public String toString() {
-        return "Lotto{" +
-                "numbers=" + numbers +
-                '}';
+        return "Lotto " + numbers + " ";
     }
-
 }

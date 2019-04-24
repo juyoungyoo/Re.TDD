@@ -1,11 +1,7 @@
 package com.juyoung.tddlotto;
 
 
-import com.juyoung.tddlotto.model.LottoMachine;
-import com.juyoung.tddlotto.model.Prize;
-import com.juyoung.tddlotto.model.lotto.Lotto;
-import com.juyoung.tddlotto.model.lotto.LottoTicket;
-import com.juyoung.tddlotto.model.lotto.LottoWinning;
+import com.juyoung.tddlotto.model.*;
 import org.junit.Test;
 
 public class LottoConsoleTest {
@@ -14,7 +10,7 @@ public class LottoConsoleTest {
     public void 당첨번호_생성() {
         LottoMachine lottoMachine = new LottoMachine();
 
-        LottoWinning winLotto = LottoWinning.of();
+        WinningLotto winLotto = WinningLotto.of();
 
         System.out.println ("===========당첨번호========");
         System.out.println (winLotto.toString ());

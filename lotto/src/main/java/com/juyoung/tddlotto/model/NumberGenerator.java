@@ -1,4 +1,4 @@
-package com.juyoung.tddlotto.model.ball;
+package com.juyoung.tddlotto.model;
 
 import lombok.Getter;
 
