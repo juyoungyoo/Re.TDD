@@ -1,4 +1,4 @@
-package com.juyoung.tddlotto.model;
+package com.juyoung.tddlotto.model.ball;
 
 import org.junit.Test;
 

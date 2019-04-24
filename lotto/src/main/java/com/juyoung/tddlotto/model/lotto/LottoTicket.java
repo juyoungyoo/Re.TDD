@@ -1,4 +1,4 @@
-package com.juyoung.tddlotto.model;
+package com.juyoung.tddlotto.model.lotto;
 
 import lombok.Getter;
 
@@ -9,20 +9,20 @@ import java.util.List;
 public class LottoTicket {
 
     private static int BUY_LOTTO_COUNT = 5;
-    private List<Lotto> lottos = new ArrayList<> ();
+    private List<Lotto> lottos = new ArrayList<>();
 
     private LottoTicket() {
-        create ();
+        create();
     }
 
     public static LottoTicket of() {
-        return new LottoTicket ();
+        return new LottoTicket();
     }
 
     private List<Lotto> create() {
         do {
-            lottos.add (Lotto.of ());
-        } while (lottos.size () < BUY_LOTTO_COUNT);
+            lottos.add(Lotto.of());
+        } while (lottos.size() < BUY_LOTTO_COUNT);
         return lottos;
     }
 }

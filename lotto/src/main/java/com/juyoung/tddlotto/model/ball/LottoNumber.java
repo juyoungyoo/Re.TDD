@@ -1,20 +1,20 @@
-package com.juyoung.tddlotto.model;
+package com.juyoung.tddlotto.model.ball;
 
 import java.util.Objects;
 
-public class LottoNumber {
+public class LottoNumber{
 
     static int MIN_LOTTO_NUMBER = 1;
     static int MAX_LOTTO_NUMBER = 45;
 
     private int number;
 
-    protected LottoNumber(int number) {
+    private LottoNumber(int number) {
         validateNumber(number);
         this.number = number;
     }
 
-    public static LottoNumber of(int number){
+    public static LottoNumber of(int number) {
         return new LottoNumber(number);
     }
 
