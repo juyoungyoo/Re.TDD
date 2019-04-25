@@ -11,7 +11,7 @@ public class InputConsole {
         return scan.nextInt();
     }
 
-    public static int inputMoney() {
+    public static int inputBalance() {
         System.out.println("금액을 입력하세요.");
         return scan.nextInt();
     }

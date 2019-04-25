@@ -1,19 +1,18 @@
-package com.juyoung.tddlotto.model.lotto;
+package com.juyoung.tddlotto.model;
 
-import com.juyoung.tddlotto.model.*;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.juyoung.tddlotto.model.lotto.LottoTest.ofLotto;
-import static com.juyoung.tddlotto.model.lotto.LottoWinningTest.ofLottoWinning;
+import static com.juyoung.tddlotto.model.LottoTest.ofLotto;
+import static com.juyoung.tddlotto.model.LottoWinningTest.ofLottoWinning;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LottoTicketTest {
+public class LottoTicketTest{
 
     @Test
-    public void $로또티켓의_당첨내역확인() {
+    public void $로또티켓의_당첨내역확인(){
         WinningLotto lottoWinning = ofLottoWinning(new int[]{1, 2, 3, 4, 5, 6}, 10);
         List<Lotto> lottos = Arrays.asList(
                 ofLotto(1, 2, 3, 4, 5, 6),
@@ -28,13 +27,13 @@ public class LottoTicketTest {
     }
 
     @Test
-    public void $5개의_로또를_생성하여_반환한다() {
+    public void $5개의_로또를_생성하여_반환한다(){
         LottoTicket ticket = LottoTicket.of();
         assertThat(ticket.getLottos()).size().isEqualTo(5);
         assertThat(ticket.getLottos()).hasOnlyElementsOfType(Lotto.class);
     }
 
-    private LottoTicket ofLottoTicket(List<Lotto> lottos) {
+    private LottoTicket ofLottoTicket(List<Lotto> lottos){
         return new LottoTicket(lottos);
     }
 }

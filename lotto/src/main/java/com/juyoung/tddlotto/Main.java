@@ -2,29 +2,39 @@ package com.juyoung.tddlotto;
 
 import com.juyoung.tddlotto.io.InputConsole;
 import com.juyoung.tddlotto.io.OutputConsole;
-import com.juyoung.tddlotto.model.LottoMachine;
-import com.juyoung.tddlotto.model.LottoResult;
-import com.juyoung.tddlotto.model.LottoTicket;
-import com.juyoung.tddlotto.model.WinningLotto;
+import com.juyoung.tddlotto.model.*;
 
-public class Main {
+public class Main{
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         LottoMachine lottoMachine = new LottoMachine();
-        int buy = InputConsole.buyTicket();
-        System.out.println(":::: 로또 " + buy + "개 구매");
+        int balance = InputConsole.inputBalance();
+        Wallet wallet = Wallet.of(balance);
 
-        LottoTicket ticket = lottoMachine.buy(buy);
-        OutputConsole.buyTicket(ticket);
+        while (true) {
+            try {
+                if (wallet.isNotBalance()) {
+                    System.out.println("로또를 구매할 수 없습니다.\n프로그램 종료합니다.");
+                    break;
+                }
+                int buy = InputConsole.buyTicket();
 
-        WinningLotto winningLotto = lottoMachine.createWinLotto();
-        OutputConsole.winningLotto(winningLotto);
+                LottoTicket ticket = lottoMachine.buy(wallet, buy);
+                System.out.println(":::: 로또 " + buy + "개 구매");
+                OutputConsole.buyTicket(ticket);
 
-        System.out.println();
-        System.out.println();
+                WinningLotto winningLotto = lottoMachine.createWinLotto();
+                OutputConsole.winningLotto(winningLotto);
 
-        LottoResult result = lottoMachine.result(ticket, winningLotto);
-        OutputConsole.result(result);
+                LottoResult result = lottoMachine.result(ticket, winningLotto);
+                OutputConsole.result(result);
+                wallet.incomePrice(result);
+
+                System.out.println("내 지갑 : " + wallet.getBalance() + "원");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

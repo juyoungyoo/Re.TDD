@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-public class LottoTicket {
+public class LottoTicket{
 
-    private static int BUY_LOTTO_COUNT = 5;
-    private List<Lotto> lottos = new ArrayList<>();
+    public static int BUY_LOTTO_COUNT = 5;
+    private List<Lotto> lottos;
 
-    private LottoTicket() {
+    private LottoTicket(){
+        lottos = new ArrayList<>();
         create();
     }
 
@@ -19,16 +20,16 @@ public class LottoTicket {
         this.lottos = lottos;
     }
 
-    public static LottoTicket of() {
+    public static LottoTicket of(){
         return new LottoTicket();
     }
 
-    public static LottoTicket of(int buyCount) {
+    public static LottoTicket of(int buyCount){
         BUY_LOTTO_COUNT = buyCount;
         return new LottoTicket();
     }
 
-    private List<Lotto> create() {
+    private List<Lotto> create(){
         do {
             lottos.add(Lotto.of());
         } while (lottos.size() < BUY_LOTTO_COUNT);
@@ -36,11 +37,11 @@ public class LottoTicket {
     }
 
     public LottoResult result(WinningLotto winning){
-        LottoResult lottoResult = new LottoResult();
-        for (Lotto lotto: this.lottos) {
-            Prize result = lotto.result(winning);
+        LottoResult lottoResult = LottoResult.of();
+        for (Lotto lotto : this.lottos) {
+            Prize result = winning.result(lotto);
             lottoResult.countPlusOne(result);
         }
-       return lottoResult;
+        return lottoResult;
     }
 }

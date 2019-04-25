@@ -8,43 +8,37 @@ import java.util.List;
 public class Lotto{
 
     public static int LOTTO_SIZE = 6;
-    private List<LottoNumber> numbers;
+    private List<Number> numbers;
 
-    protected Lotto(List<LottoNumber> lottoNumbers) {
-        validateSize(lottoNumbers);
-        lottoNumbers.sort(LottoNumber::compareTo);
-        this.numbers = lottoNumbers;
+    protected Lotto(List<Number> numbers){
+        validateSize(numbers);
+        numbers.sort(Number::compareTo);
+        this.numbers = numbers;
     }
 
-    public static Lotto of() {
+    public static Lotto of(){
         NumberGenerator numbers = NumberGenerator.of();
         return new Lotto(numbers.peek(6));
     }
 
-    private void validateSize(List<LottoNumber> numbers) {
+    private void validateSize(List<Number> numbers){
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("로또 숫자는 6개만 가능합니다.");
         }
     }
 
-    public int size() {
+    public int size(){
         return numbers.size();
     }
 
-    public int match(Lotto other) {
-        List<LottoNumber> otherNumbers = other.numbers;
+    public int match(Lotto other){
+        List<Number> otherNumbers = other.numbers;
         int matchCount = (int) otherNumbers.stream().filter(number -> this.numbers.contains(number)).count();
         return matchCount;
     }
 
-    public Prize result(WinningLotto winning) {
-        int match = winning.match(this);
-        boolean bonus = winning.isExistBonus(this.getNumbers());
-        return Prize.of(match, bonus);
-    }
-
     @Override
-    public String toString() {
+    public String toString(){
         return "Lotto " + numbers + " ";
     }
 }

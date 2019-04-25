@@ -2,7 +2,6 @@ package com.juyoung.tddlotto.model;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,16 +9,16 @@ import java.util.Objects;
 public class WinningLotto extends Lotto{
 
     private static NumberGenerator numbersGenerator;
-    private LottoNumber bonus;
+    private Number bonus;
 
-    public WinningLotto(List<LottoNumber> lottoNumbers, LottoNumber bonus) {
-        super(lottoNumbers);
+    public WinningLotto(List<Number> numbers, Number bonus) {
+        super(numbers);
         this.bonus = bonus;
     }
 
-    public WinningLotto(List<LottoNumber> lottoNumbers) {
-        super(lottoNumbers);
-        this.bonus = numbersGenerator.peek(1).get(0);
+    private WinningLotto(List<Number> numbers) {
+        super(numbers);
+        this.bonus = numbersGenerator.peek();
     }
 
     public static WinningLotto of(){
@@ -27,27 +26,26 @@ public class WinningLotto extends Lotto{
         return new WinningLotto(numbersGenerator.peek(6));
     }
 
+    public Prize result(Lotto lotto) {
+        int match = match(lotto);
+        boolean bonus = isMatchBonus(lotto.getNumbers());
+        return Prize.of(match, bonus);
+    }
+
     @Override
     public int match(Lotto lotto) {
         int matchCount = super.match(lotto);
-        if(isExistBonus(lotto.getNumbers())){
+        if(isMatchBonus(lotto.getNumbers())){
             matchCount++;
         }
         return matchCount;
     }
 
-    public boolean isExistBonus(List<LottoNumber> numbers){
+    public boolean isMatchBonus(List<Number> numbers){
          if(numbers.contains(bonus)){
             return true;
          }
          return false;
-    }
-
-    @Override
-    public List<LottoNumber> getNumbers() {
-        List<LottoNumber> list = new ArrayList<>();
-        list.addAll(super.getNumbers());
-        return list;
     }
 
     @Override

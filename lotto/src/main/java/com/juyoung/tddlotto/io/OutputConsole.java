@@ -12,12 +12,13 @@ public class OutputConsole {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
-        System.out.println("================================");
+        System.out.println("================================\n");
     }
 
     public static void winningLotto(WinningLotto winningLotto) {
         System.out.println("=============당첨번호=============");
-        System.out.println(winningLotto);
+        System.out.println(winningLotto.getNumbers() + " [" + winningLotto.getBonus() + "]");
+        System.out.println("================================\n");
     }
 
     public static void result(LottoResult lottoResult) {
@@ -27,7 +28,10 @@ public class OutputConsole {
         System.out.println("당첨된 총 금액 : " + lottoResult.getSummary() + "원");
         Map<Prize, Integer> resultCount = lottoResult.getResultCount();
         for (Map.Entry<Prize, Integer> result : resultCount.entrySet()){
-            System.out.println(result.getKey().name() + ":" + result.getValue() + "개");
+            if(result.getKey() == Prize.NONE){
+                continue;
+            }
+            System.out.println(result.getKey().name() + " : " + result.getValue() + "개");
         }
         System.out.println("********************************");
     }

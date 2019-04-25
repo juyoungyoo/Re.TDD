@@ -7,28 +7,29 @@ import java.util.Arrays;
 import static com.juyoung.tddlotto.model.Lotto.LOTTO_SIZE;
 
 @Getter
-public enum Prize {
+public enum Prize{
 
-    FIRST(6, 100_000),
-    SECOND(5, 10_000),
-    THIRD(5, 1_000),
-    FOURTH(4, 100),
-    FIFTH(3, 10),
+    FIRST(6, 150_000),
+    SECOND(5, 100_000),
+    THIRD(5, 50_000),
+    FOURTH(4, 10_000),
+    FIFTH(3, 5_000),
     NONE(0, 0);
 
     private int matchCount;
     private int money;
 
     Prize(int matchCount,
-          int money) {
+          int money){
         this.matchCount = matchCount;
         this.money = money;
     }
 
-    public static Prize of(int matchCount, boolean isExistBonus) {
+    public static Prize of(int matchCount,
+                           boolean isExistBonus){
         validateCount(matchCount);
-        if(Prize.THIRD.matchCount == matchCount && isExistBonus){
-             return Prize.THIRD;
+        if (Prize.THIRD.matchCount == matchCount && isExistBonus) {
+            return Prize.THIRD;
         }
         return Arrays.stream(Prize.values())
                 .filter(prize -> prize.matchCount == matchCount)
@@ -36,14 +37,14 @@ public enum Prize {
                 .orElse(Prize.NONE);
     }
 
-    private static void validateCount(int matchCount) {
-        if(0 > matchCount || LOTTO_SIZE < matchCount){
+    private static void validateCount(int matchCount){
+        if (0 > matchCount || LOTTO_SIZE < matchCount) {
             throw new IllegalArgumentException();
         }
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         return this.name() + ", " + money + "원";
     }
 }
