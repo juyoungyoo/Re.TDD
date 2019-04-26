@@ -26,9 +26,9 @@ public enum Prize {
     }
 
     public static Prize of(int matchCount,
-                           boolean isExistBonus) {
+                           boolean existBonus) {
         validateCount(matchCount);
-        if (Prize.THIRD.matchCount == matchCount && isExistBonus) {
+        if (Prize.THIRD.matchCount == matchCount && !existBonus) {
             return Prize.THIRD;
         }
         return Arrays.stream(Prize.values())

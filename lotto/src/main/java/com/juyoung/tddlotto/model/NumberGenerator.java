@@ -2,21 +2,20 @@ package com.juyoung.tddlotto.model;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
 
 @Getter
 public class NumberGenerator {
 
-    private static List<Number> numbers = new ArrayList<>();
+    private static List<Number> numbers;
 
     static {
-        for (int num = Number.MIN; num <= Number.MAX; num++) {
-            numbers.add(Number.of(num));
-        }
+        numbers = IntStream.range(Number.MIN, Number.MAX+1).mapToObj(Number::of).collect(Collectors.toList());
     }
 
     private NumberGenerator() {

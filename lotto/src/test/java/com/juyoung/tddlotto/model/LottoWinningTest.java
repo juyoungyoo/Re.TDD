@@ -45,9 +45,9 @@ public class LottoWinningTest {
     }
 
     @Test
-    public void $2등_로또번호_5개_일치() {
+    public void 로또번호_5개일치_보너스일치_2등() {
         Lotto lotto = ofLotto(1, 2, 3, 4, 5, 6);
-        WinningLotto lottoWinning = ofLottoWinning(new int[]{1, 2, 3, 4, 5, 9}, 10);
+        WinningLotto lottoWinning = ofLottoWinning(new int[]{1, 2, 3, 4, 5, 9}, 6);
 
         Prize result = lottoWinning.result(lotto);
 
@@ -55,9 +55,9 @@ public class LottoWinningTest {
     }
 
     @Test
-    public void $3등_로또번호_5개_일치_보너스_포함() {
+    public void 로또번호_5개일치_3등() {
         Lotto lotto = ofLotto(1, 2, 3, 4, 5, 6);
-        WinningLotto lottoWinning = ofLottoWinning(new int[]{1, 2, 3, 4, 7, 9}, 6);
+        WinningLotto lottoWinning = ofLottoWinning(new int[]{1, 2, 3, 4, 5, 9}, 7);
 
         Prize result = lottoWinning.result(lotto);
 

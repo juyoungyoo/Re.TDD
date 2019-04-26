@@ -36,17 +36,11 @@ public class WinningLotto extends Lotto {
     @Override
     public int match(Lotto lotto) {
         int matchCount = super.match(lotto);
-        if (isMatchBonus(lotto.getNumbers())) {
-            matchCount++;
-        }
         return matchCount;
     }
 
     public boolean isMatchBonus(List<Number> numbers) {
-        if (numbers.contains(bonus)) {
-            return true;
-        }
-        return false;
+        return numbers.contains(bonus);
     }
 
     @Override
