@@ -7,10 +7,10 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class WalletTest{
+public class WalletTest {
 
     @Test
-    public void 로또구매(){
+    public void 로또구매() {
         Wallet wallet = Wallet.of(10000);
         int spendMoney = 2000;
         wallet.spend(spendMoney);
@@ -18,14 +18,14 @@ public class WalletTest{
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void 금액부족(){
+    public void 금액부족() {
         Wallet wallet = Wallet.of(1000);
         int spendMoney = 2000;
         wallet.spend(spendMoney);
     }
 
     @Test
-    public void 상금수령(){
+    public void 상금수령() {
         Wallet wallet = Wallet.of(0);
         LottoResult lottoResult = LottoResult.of();
         List<Prize> prizes = Arrays.asList(Prize.FOURTH, Prize.FIFTH);

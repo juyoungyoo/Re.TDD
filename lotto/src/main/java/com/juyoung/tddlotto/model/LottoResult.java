@@ -6,34 +6,34 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Getter
-public class LottoResult{
+public class LottoResult {
 
     private Map<Prize, Integer> resultCount;
 
-    private LottoResult(){
+    private LottoResult() {
         this.resultCount = new HashMap<>();
     }
 
-    public static LottoResult of(){
+    public static LottoResult of() {
         return new LottoResult();
     }
 
-    public void countPlusOne(Prize prize){
+    public void countPlusOne(Prize prize) {
         int prizeValue = getCountByPrize(prize);
         resultCount.put(prize, prizeValue + 1);
     }
 
-    private int getCountByPrize(Prize prize){
+    private int getCountByPrize(Prize prize) {
         return resultCount.getOrDefault(prize, 0);
     }
 
-    public int getCount(){
+    public int getCount() {
         return resultCount.entrySet().stream()
                 .filter(x -> x.getKey() != Prize.NONE)
                 .mapToInt(x -> x.getValue()).sum();
     }
 
-    public int getSummary(){
+    public int getSummary() {
         int sum = 0;
         for (Map.Entry<Prize, Integer> result : resultCount.entrySet()) {
             sum += (result.getKey().getMoney() * result.getValue());

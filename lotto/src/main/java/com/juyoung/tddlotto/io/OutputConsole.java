@@ -27,8 +27,8 @@ public class OutputConsole {
         System.out.println("당첨된 총 갯수 : " + lottoResult.getCount() + "개");
         System.out.println("당첨된 총 금액 : " + lottoResult.getSummary() + "원");
         Map<Prize, Integer> resultCount = lottoResult.getResultCount();
-        for (Map.Entry<Prize, Integer> result : resultCount.entrySet()){
-            if(result.getKey() == Prize.NONE){
+        for (Map.Entry<Prize, Integer> result : resultCount.entrySet()) {
+            if (result.getKey() == Prize.NONE) {
                 continue;
             }
             System.out.println(result.getKey().name() + " : " + result.getValue() + "개");

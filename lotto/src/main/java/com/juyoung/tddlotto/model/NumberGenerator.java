@@ -9,37 +9,37 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @Getter
-public class NumberGenerator{
+public class NumberGenerator {
 
     private static List<Number> numbers = new ArrayList<>();
 
-    static{
+    static {
         for (int num = Number.MIN; num <= Number.MAX; num++) {
             numbers.add(Number.of(num));
         }
     }
 
-    private NumberGenerator(){
+    private NumberGenerator() {
         shuffle();
     }
 
-    public static NumberGenerator of(){
+    public static NumberGenerator of() {
         return new NumberGenerator();
     }
 
-    private void shuffle(){
+    private void shuffle() {
         Collections.shuffle(numbers);
     }
 
-    public List<Number> peek(int count){
+    public List<Number> peek(int count) {
         return numbers.stream().limit(count).collect(toList());
     }
 
-    public Number peek(){
+    public Number peek() {
         return numbers.get(0);
     }
 
-    public int size(){
+    public int size() {
         return numbers.size();
     }
 }

@@ -4,9 +4,9 @@ import com.juyoung.tddlotto.io.InputConsole;
 import com.juyoung.tddlotto.io.OutputConsole;
 import com.juyoung.tddlotto.model.*;
 
-public class Main{
+public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         LottoMachine lottoMachine = new LottoMachine();
         int balance = InputConsole.inputBalance();

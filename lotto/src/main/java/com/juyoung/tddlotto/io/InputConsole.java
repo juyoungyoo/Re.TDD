@@ -6,7 +6,7 @@ public class InputConsole {
 
     static Scanner scan = new Scanner(System.in);
 
-    public static int buyTicket(){
+    public static int buyTicket() {
         System.out.println("몇 장을 구매하시겠습니까?");
         return scan.nextInt();
     }
