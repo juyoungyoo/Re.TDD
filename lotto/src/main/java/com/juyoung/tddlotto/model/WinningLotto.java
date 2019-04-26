@@ -29,7 +29,7 @@ public class WinningLotto extends Lotto {
 
     public Prize result(Lotto lotto) {
         int match = match(lotto);
-        boolean bonus = isMatchBonus(lotto.getNumbers());
+        boolean bonus = containsBonus(lotto.getNumbers());
         return Prize.of(match, bonus);
     }
 
@@ -39,7 +39,7 @@ public class WinningLotto extends Lotto {
         return matchCount;
     }
 
-    public boolean isMatchBonus(List<Number> numbers) {
+    public boolean containsBonus(List<Number> numbers) {
         return numbers.contains(bonus);
     }
 

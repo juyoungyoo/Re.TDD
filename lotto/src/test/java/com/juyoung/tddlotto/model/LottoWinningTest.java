@@ -30,7 +30,7 @@ public class LottoWinningTest {
         WinningLotto lottoWinning = ofLottoWinning(new int[]{1, 2, 3, 4, 7, 9}, 10);
         List<Number> compareLotto = ofLottoNumbers(1, 2, 3, 4, 7, 10);
 
-        boolean result = lottoWinning.isMatchBonus(compareLotto);
+        boolean result = lottoWinning.containsBonus(compareLotto);
         assertThat(result).isTrue();
     }
 
