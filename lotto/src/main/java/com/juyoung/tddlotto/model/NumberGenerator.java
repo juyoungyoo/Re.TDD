@@ -14,7 +14,7 @@ public class NumberGenerator{
     private static List<Number> numbers = new ArrayList<>();
 
     static{
-        for (int num = Number.MIN_LOTTO_NUMBER; num <= Number.MAX_LOTTO_NUMBER; num++) {
+        for (int num = Number.MIN; num <= Number.MAX; num++) {
             numbers.add(Number.of(num));
         }
     }

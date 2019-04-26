@@ -2,6 +2,7 @@ package com.juyoung.tddlotto.model;
 
 import lombok.Getter;
 
+import java.util.Collections;
 import java.util.List;
 
 @Getter
@@ -12,7 +13,7 @@ public class Lotto{
 
     protected Lotto(List<Number> numbers){
         validateSize(numbers);
-        numbers.sort(Number::compareTo);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 

@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Number implements Comparable<Number>{
 
-    static int MIN_LOTTO_NUMBER = 1;
-    static int MAX_LOTTO_NUMBER = 45;
+    static int MIN = 1;
+    static int MAX = 45;
 
     private int number;
 
@@ -19,8 +19,8 @@ public class Number implements Comparable<Number>{
     }
 
     private void validateNumber(int number){
-        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException(MIN_LOTTO_NUMBER + " ~ " + MAX_LOTTO_NUMBER + "숫자만 가능합니다");
+        if (number < MIN || number > MAX) {
+            throw new IllegalArgumentException(MIN + " ~ " + MAX + "숫자만 가능합니다");
         }
     }
 
@@ -44,13 +44,6 @@ public class Number implements Comparable<Number>{
 
     @Override
     public int compareTo(Number o){
-        if (number < o.number) {
-            return -1;
-        } else if (number == o.number) {
-
-            return 0;
-        } else {
-            return 1;
-        }
+        return Integer.compare(number, o.number);
     }
 }
