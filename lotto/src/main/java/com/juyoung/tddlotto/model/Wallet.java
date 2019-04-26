@@ -29,18 +29,18 @@ public class Wallet {
     }
 
     public void incomePrice(LottoResult lottoResult) {
-        income(lottoResult.getSummary());
-    }
-
-    private void income(int money) {
-        this.balance += money;
+        this.balance += lottoResult.getSummary();
     }
 
     public boolean isNotBalance() {
-        if (this.balance > 0) {
-            return false;
+        return !isBalance();
+    }
+
+    public boolean isBalance(){
+        if(this.balance > 0){
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override

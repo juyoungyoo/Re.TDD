@@ -30,7 +30,7 @@ public class LottoTicketTest {
     @Test
     public void 로또5개를_가진_로또티켓을_생성한다() {
         LottoTicket ticket = new LottoTicket(5);
-        assertThat(ticket.getLottos()).size().isEqualTo(5);
+        assertThat(ticket.getLottos().size()).isEqualTo(5);
         assertThat(ticket.getLottos()).hasOnlyElementsOfType(Lotto.class);
     }
 

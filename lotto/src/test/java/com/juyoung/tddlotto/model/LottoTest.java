@@ -13,7 +13,7 @@ public class LottoTest {
     @Test
     public void 로또는_6개의_로또넘버를_생성한다() {
         Lotto lotto = Lotto.init();
-        assertThat(lotto.size()).isEqualTo(6);
+        assertThat(lotto.size()).isEqualTo(Lotto.LOTTO_SIZE);
     }
 
     @Test(expected = IllegalArgumentException.class)
