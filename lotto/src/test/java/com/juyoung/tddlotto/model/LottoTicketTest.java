@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LottoTicketTest {
 
     @Test
-    public void $로또티켓의_당첨내역확인() {
+    public void 로또티켓의_당첨내역확인() {
         WinningLotto lottoWinning = ofLottoWinning(new int[]{1, 2, 3, 4, 5, 6}, 10);
         List<Lotto> lottos = Arrays.asList(
                 ofLotto(1, 2, 3, 4, 5, 6),
@@ -27,8 +27,8 @@ public class LottoTicketTest {
     }
 
     @Test
-    public void $5개의_로또를_생성하여_반환한다() {
-        LottoTicket ticket = LottoTicket.of();
+    public void 로또5개를_가진_로또티켓을_생성한다() {
+        LottoTicket ticket = new LottoTicket(5);
         assertThat(ticket.getLottos()).size().isEqualTo(5);
         assertThat(ticket.getLottos()).hasOnlyElementsOfType(Lotto.class);
     }

@@ -8,31 +8,21 @@ import java.util.List;
 @Getter
 public class LottoTicket {
 
-    public static int BUY_LOTTO_COUNT = 5;
     private List<Lotto> lottos;
 
-    private LottoTicket() {
+    public LottoTicket(int count) {
         lottos = new ArrayList<>();
-        create();
+        create(count);
     }
 
     public LottoTicket(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static LottoTicket of() {
-        return new LottoTicket();
-    }
-
-    public static LottoTicket of(int buyCount) {
-        BUY_LOTTO_COUNT = buyCount;
-        return new LottoTicket();
-    }
-
-    private List<Lotto> create() {
+    private List<Lotto> create(int count) {
         do {
             lottos.add(Lotto.of());
-        } while (lottos.size() < BUY_LOTTO_COUNT);
+        } while (lottos.size() < count);
         return lottos;
     }
 
