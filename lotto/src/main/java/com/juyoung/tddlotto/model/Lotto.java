@@ -17,7 +17,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto of() {
+    public static Lotto init() {
         NumberGenerator numbers = NumberGenerator.of();
         return new Lotto(numbers.peek(6));
     }

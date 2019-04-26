@@ -6,14 +6,15 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.juyoung.tddlotto.model.LottoTest.ofLotto;
-import static com.juyoung.tddlotto.model.LottoWinningTest.ofLottoWinning;
+import static com.juyoung.tddlotto.model.WinningLottoTest.ofLottoWinning;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoTicketTest {
 
     @Test
     public void 로또티켓의_당첨내역확인() {
-        WinningLotto lottoWinning = ofLottoWinning(new int[]{1, 2, 3, 4, 5, 6}, 10);
+        WinningLotto lottoWinning = ofLottoWinning
+                (ofLotto(1, 2, 3, 4, 5, 6), 10);
         List<Lotto> lottos = Arrays.asList(
                 ofLotto(1, 2, 3, 4, 5, 6),
                 ofLotto(1, 2, 3, 4, 5, 7),
@@ -23,7 +24,7 @@ public class LottoTicketTest {
         LottoResult result = lottoTicket.result(lottoWinning);
 
         assertThat(result.getCount()).isEqualTo(2);
-        assertThat(result.getSummary()).isEqualTo(Prize.FIRST.getMoney() + Prize.SECOND.getMoney());
+        assertThat(result.getSummary()).isEqualTo(Prize.FIRST.getMoney() + Prize.THIRD.getMoney());
     }
 
     @Test

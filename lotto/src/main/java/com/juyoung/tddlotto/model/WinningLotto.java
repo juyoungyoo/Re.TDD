@@ -6,48 +6,41 @@ import java.util.List;
 import java.util.Objects;
 
 @Getter
-public class WinningLotto extends Lotto {
+public class WinningLotto {
 
     private static NumberGenerator numbersGenerator;
+    private Lotto lotto;
     private Number bonus;
 
-    public WinningLotto(List<Number> numbers,
-                        Number bonus) {
-        super(numbers);
+    public WinningLotto(Lotto lotto, Number bonus) {
+        this.lotto = lotto;
         this.bonus = bonus;
     }
 
-    private WinningLotto(List<Number> numbers) {
-        super(numbers);
+    private WinningLotto() {
+        this.lotto = lotto.init();
         this.bonus = numbersGenerator.peek();
     }
 
-    public static WinningLotto of() {
-        numbersGenerator = NumberGenerator.of();
-        return new WinningLotto(numbersGenerator.peek(6));
+    public static WinningLotto init() {
+        numbersGenerator = numbersGenerator.of();
+        return new WinningLotto();
     }
 
     public Prize result(Lotto lotto) {
-        int match = match(lotto);
+        int match = this.lotto.match(lotto);
         boolean bonus = containsBonus(lotto.getNumbers());
         return Prize.of(match, bonus);
-    }
-
-    @Override
-    public int match(Lotto lotto) {
-        int matchCount = super.match(lotto);
-        return matchCount;
     }
 
     public boolean containsBonus(List<Number> numbers) {
         return numbers.contains(bonus);
     }
 
-    @Override
     public int size() {
         if (Objects.nonNull(bonus)) {
-            return super.size() + 1;
+            return lotto.size() + 1;
         }
-        return super.size();
+        return lotto.size();
     }
 }

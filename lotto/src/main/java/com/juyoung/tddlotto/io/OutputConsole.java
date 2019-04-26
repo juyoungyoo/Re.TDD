@@ -17,7 +17,7 @@ public class OutputConsole {
 
     public static void winningLotto(WinningLotto winningLotto) {
         System.out.println("=============당첨번호=============");
-        System.out.println(winningLotto.getNumbers() + " [" + winningLotto.getBonus() + "]");
+        System.out.println(winningLotto.getLotto() + " [" + winningLotto.getBonus() + "]");
         System.out.println("================================\n");
     }
 

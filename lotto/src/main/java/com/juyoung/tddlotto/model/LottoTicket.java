@@ -21,7 +21,7 @@ public class LottoTicket {
 
     private List<Lotto> create(int count) {
         do {
-            lottos.add(Lotto.of());
+            lottos.add(Lotto.init());
         } while (lottos.size() < count);
         return lottos;
     }

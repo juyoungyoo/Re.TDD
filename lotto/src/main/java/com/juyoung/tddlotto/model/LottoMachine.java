@@ -15,7 +15,7 @@ public class LottoMachine {
     }
 
     public WinningLotto createWinLotto() {
-        return WinningLotto.of();
+        return WinningLotto.init();
     }
 
     public LottoResult result(LottoTicket ticket,
