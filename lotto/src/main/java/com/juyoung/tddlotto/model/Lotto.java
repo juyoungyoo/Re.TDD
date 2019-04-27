@@ -17,9 +17,8 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto init() {
-        NumberGenerator numbers = NumberGenerator.of();
-        return new Lotto(numbers.peek(6));
+    public static Lotto init(List<Number> numbers) {
+        return new Lotto(numbers);
     }
 
     private void validateSize(List<Number> numbers) {

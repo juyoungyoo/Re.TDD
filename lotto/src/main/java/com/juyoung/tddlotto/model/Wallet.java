@@ -36,6 +36,7 @@ public class Wallet {
         return !isBalance();
     }
 
+    // todo : question
     public boolean isBalance(){
         if(this.balance > 0){
             return true;

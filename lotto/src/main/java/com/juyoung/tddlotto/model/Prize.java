@@ -28,13 +28,27 @@ public enum Prize {
     public static Prize of(int matchCount,
                            boolean existBonus) {
         validateCount(matchCount);
-        if (Prize.THIRD.matchCount == matchCount && !existBonus) {
-            return Prize.THIRD;
+        if (isPrizeOfSecond(matchCount, existBonus)) {
+            return SECOND;
         }
         return Arrays.stream(Prize.values())
-                .filter(prize -> prize.matchCount == matchCount)
+                .filter(prize -> isMatchCount(matchCount, prize))
                 .findFirst()
                 .orElse(Prize.NONE);
+    }
+
+    private static boolean isPrizeOfSecond(int matchCount, boolean existBonus) {
+        if (matchCount == SECOND.getMatchCount() && existBonus) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean isMatchCount(int matchCount, Prize prize) {
+        if (SECOND == prize) {
+            return false;
+        }
+        return prize.matchCount == matchCount;
     }
 
     private static void validateCount(int matchCount) {

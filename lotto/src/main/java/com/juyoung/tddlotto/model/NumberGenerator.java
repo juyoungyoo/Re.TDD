@@ -15,27 +15,20 @@ public class NumberGenerator {
     private static List<Number> numbers;
 
     static {
-        numbers = IntStream.range(Number.MIN, Number.MAX+1).mapToObj(Number::of).collect(Collectors.toList());
+        numbers = IntStream.rangeClosed(Number.MIN, Number.MAX).mapToObj(Number::of).collect(Collectors.toList());
     }
 
-    private NumberGenerator() {
-        shuffle();
-    }
-
-    public static NumberGenerator of() {
+    public static NumberGenerator init() {
+        Collections.shuffle(numbers);
         return new NumberGenerator();
     }
 
-    private void shuffle() {
-        Collections.shuffle(numbers);
-    }
-
-    public List<Number> peek(int count) {
+    public List<Number> getNumbers(int count) {
         return numbers.stream().limit(count).collect(toList());
     }
 
-    public Number peek() {
-        return numbers.get(0);
+    public Number getBonusNumber() {
+        return numbers.get(Lotto.LOTTO_SIZE);
     }
 
     public int size() {

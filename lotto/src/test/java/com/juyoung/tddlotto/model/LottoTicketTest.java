@@ -28,9 +28,10 @@ public class LottoTicketTest {
     }
 
     @Test
-    public void 로또5개를_가진_로또티켓을_생성한다() {
-        LottoTicket ticket = new LottoTicket(5);
-        assertThat(ticket.getLottos().size()).isEqualTo(5);
+    public void 로또티켓을_생성한다() {
+        List<Lotto> lottos = Arrays.asList(ofLotto(1, 2, 3, 4, 5, 7), ofLotto(1, 2, 3, 4, 5, 6));
+        LottoTicket ticket = new LottoTicket(lottos);
+        assertThat(ticket.getLottos().size()).isEqualTo(2);
         assertThat(ticket.getLottos()).hasOnlyElementsOfType(Lotto.class);
     }
 

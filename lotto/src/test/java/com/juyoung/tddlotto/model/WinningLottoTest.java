@@ -12,8 +12,7 @@ public class WinningLottoTest {
 
     @Test
     public void 당첨번호를_생성한다() {
-        WinningLotto lottoWinning = WinningLotto.init();
-        assertThat(lottoWinning.size()).isEqualTo(7);
+        WinningLotto lottoWinning = new WinningLotto(ofLotto(1,2,3,4,5,6), Number.of(7));
         assertThat(lottoWinning.getBonus()).isNotNull();
     }
 
