@@ -6,7 +6,7 @@ import java.util.List;
 public class LottoMachine {
 
     public static int LOTTO_PRICE = 1000;
-    public NumberGenerator numberGenerator;
+    public NumberGenerator numberGenerator = NumberGenerator.init();
 
     public LottoTicket buy(Wallet wallet,
                            int count) {
@@ -14,7 +14,7 @@ public class LottoMachine {
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            lottos.add(createLotto());
+            lottos.add(numberGenerator.getLotto());
         }
         return new LottoTicket(lottos);
     }
@@ -23,17 +23,10 @@ public class LottoMachine {
         return count * LOTTO_PRICE;
     }
 
-    private Lotto createLotto() {
-        numberGenerator = NumberGenerator.init();
-        List<Number> peek = numberGenerator.getNumbers(Lotto.LOTTO_SIZE);
-        return Lotto.init(peek);
-    }
-
     public WinningLotto createWinLotto() {
-        numberGenerator = numberGenerator.init();
-        List<Number> numbers = numberGenerator.getNumbers(6);
+        Lotto lotto = numberGenerator.getLotto();
         Number bonus = numberGenerator.getBonusNumber();
-        return new WinningLotto(numbers, bonus);
+        return new WinningLotto(lotto, bonus);
     }
 
     public LottoResult result(LottoTicket ticket,

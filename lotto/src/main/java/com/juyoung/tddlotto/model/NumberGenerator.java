@@ -19,11 +19,16 @@ public class NumberGenerator {
     }
 
     public static NumberGenerator init() {
-        Collections.shuffle(numbers);
         return new NumberGenerator();
     }
 
-    public List<Number> getNumbers(int count) {
+    public Lotto getLotto() {
+        Collections.shuffle(numbers);
+        List<Number> numbers = getNumbers(Lotto.LOTTO_SIZE);
+        return new Lotto(numbers);
+    }
+
+    private List<Number> getNumbers(int count) {
         return numbers.stream().limit(count).collect(toList());
     }
 
