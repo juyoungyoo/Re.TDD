@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LottoTest {
     @Test
     public void 로또는_6개의_로또넘버를_생성한다() {
-        Lotto lotto = Lotto.init(ofLottoNumbers(1,2,3,4,5,6));
+        Lotto lotto = new Lotto(ofLottoNumbers(1,2,3,4,5,6));
         assertThat(lotto.size()).isEqualTo(Lotto.LOTTO_SIZE);
     }
 

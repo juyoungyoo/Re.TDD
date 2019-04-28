@@ -11,19 +11,15 @@ public class Lotto {
     public static int LOTTO_SIZE = 6;
     private List<Number> numbers;
 
-    protected Lotto(List<Number> numbers) {
+    public Lotto(List<Number> numbers) {
         validateSize(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
     }
 
-    public static Lotto init(List<Number> numbers) {
-        return new Lotto(numbers);
-    }
-
     private void validateSize(List<Number> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("로또 숫자는 6개만 가능합니다.");
+            throw new IllegalArgumentException("로또 숫자는 " + LOTTO_SIZE +  "개만 가능합니다.");
         }
     }
 
@@ -33,7 +29,9 @@ public class Lotto {
 
     public int match(Lotto other) {
         List<Number> otherNumbers = other.numbers;
-        int matchCount = (int) otherNumbers.stream().filter(number -> this.numbers.contains(number)).count();
+        int matchCount = (int) otherNumbers.stream()
+                .filter(number -> this.numbers.contains(number))
+                .count();
         return matchCount;
     }
 

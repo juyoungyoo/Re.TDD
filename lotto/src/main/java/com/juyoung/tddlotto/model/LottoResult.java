@@ -10,29 +10,26 @@ public class LottoResult {
 
     private Map<Prize, Integer> resultCount;
 
-    private LottoResult() {
+    public LottoResult() {
         this.resultCount = new HashMap<>();
     }
 
-    public static LottoResult of() {
-        return new LottoResult();
-    }
-
     public void countPlusOne(Prize prize) {
-        int prizeValue = getCountByPrize(prize);
+        // todo : putIfAbsent 적용해보자
+        resultCount.putIfAbsent(prize, 0);
+        int prizeValue = resultCount.getOrDefault(prize, 0);
         resultCount.put(prize, prizeValue + 1);
-    }
 
-    private int getCountByPrize(Prize prize) {
-        return resultCount.getOrDefault(prize, 0);
+        // todo : computeIfPresent 적용해보기
     }
 
     public int getCount() {
         return resultCount.entrySet().stream()
                 .filter(x -> x.getKey() != Prize.NONE)
-                .mapToInt(x -> x.getValue()).sum();
+                .mapToInt(x -> x.getValue())
+                .sum();
     }
-
+    //ToDO
     public int getSummary() {
         int sum = 0;
         for (Map.Entry<Prize, Integer> result : resultCount.entrySet()) {

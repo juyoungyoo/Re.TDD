@@ -27,7 +27,7 @@ public class WalletTest {
     @Test
     public void 상금수령() {
         Wallet wallet = Wallet.of(0);
-        LottoResult lottoResult = LottoResult.of();
+        LottoResult lottoResult = new LottoResult();
         List<Prize> prizes = Arrays.asList(Prize.FOURTH, Prize.FIFTH);
         for (Prize prize : prizes) {
             lottoResult.countPlusOne(prize);

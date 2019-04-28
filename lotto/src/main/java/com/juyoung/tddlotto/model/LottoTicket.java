@@ -14,7 +14,7 @@ public class LottoTicket {
     }
 
     public LottoResult result(WinningLotto winning) {
-        LottoResult lottoResult = LottoResult.of();
+        LottoResult lottoResult = new LottoResult();
         for (Lotto lotto : this.lottos) {
             Prize result = winning.result(lotto);
             lottoResult.countPlusOne(result);

@@ -7,18 +7,13 @@ import java.util.List;
 @Getter
 public class WinningLotto {
 
+    public static final int BONUS_INDEX = 6;
     private Lotto lotto;
     private Number bonus;
 
     public WinningLotto(Lotto lotto,
                         Number bonus) {
         this.lotto = lotto;
-        this.bonus = bonus;
-    }
-
-    public WinningLotto(List<Number> numbers,
-                        Number bonus) {
-        this.lotto = new Lotto(numbers);
         this.bonus = bonus;
     }
 
