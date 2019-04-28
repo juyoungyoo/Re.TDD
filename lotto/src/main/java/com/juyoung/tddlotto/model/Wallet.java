@@ -32,16 +32,8 @@ public class Wallet {
         this.balance += lottoResult.getSummary();
     }
 
-    public boolean isNotBalance() {
-        return !isBalance();
-    }
-
-    // todo : question
-    public boolean isBalance(){
-        if(this.balance > 0){
-            return true;
-        }
-        return false;
+    public boolean isBalance() {
+        return this.balance > 0;
     }
 
     @Override

@@ -14,7 +14,7 @@ public class Main {
 
         while (true) {
             try {
-                if (wallet.isNotBalance()) {
+                if (!wallet.isBalance()) {
                     System.out.println("로또를 구매할 수 없습니다.\n프로그램 종료합니다.");
                     break;
                 }
