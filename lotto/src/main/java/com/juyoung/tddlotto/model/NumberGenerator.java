@@ -1,7 +1,5 @@
 package com.juyoung.tddlotto.model;
 
-import lombok.Getter;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +7,6 @@ import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
 
-@Getter
 public class NumberGenerator {
 
     private static List<Number> numbers;
@@ -18,25 +15,20 @@ public class NumberGenerator {
         numbers = IntStream.rangeClosed(Number.MIN, Number.MAX).mapToObj(Number::of).collect(Collectors.toList());
     }
 
-    public static NumberGenerator init() {
-        return new NumberGenerator();
-    }
-
-    public Lotto getLotto() {
-        Collections.shuffle(numbers);
+    public static Lotto getLotto() {
         List<Number> numbers = getNumbers(Lotto.LOTTO_SIZE);
         return new Lotto(numbers);
     }
 
-    private List<Number> getNumbers(int count) {
+    private static List<Number> getNumbers(int count) {
+        Collections.shuffle(numbers);
         return numbers.stream().limit(count).collect(toList());
     }
 
-    public Number getBonusNumber() {
-        return numbers.get(Lotto.LOTTO_SIZE);
-    }
-
-    public int size() {
-        return numbers.size();
+    public static WinningLotto getWinningLotto(){
+        List<Number> numbers = getNumbers(7);
+        Number bonusNumber = numbers.remove(WinningLotto.BONUS_INDEX);
+        Lotto lotto = new Lotto(numbers);
+        return new WinningLotto(lotto, bonusNumber);
     }
 }
