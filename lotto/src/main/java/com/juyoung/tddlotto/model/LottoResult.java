@@ -15,12 +15,8 @@ public class LottoResult {
     }
 
     public void countPlusOne(Prize prize) {
-        // todo : putIfAbsent 적용해보자
         resultCount.putIfAbsent(prize, 0);
-        int prizeValue = resultCount.getOrDefault(prize, 0);
-        resultCount.put(prize, prizeValue + 1);
-
-        // todo : computeIfPresent 적용해보기
+        resultCount.computeIfPresent(prize, (key, value) -> ++value); // TODO : 증감 연산자 순서 영향받음
     }
 
     public int getCount() {
@@ -29,11 +25,11 @@ public class LottoResult {
                 .mapToInt(x -> x.getValue())
                 .sum();
     }
-    //ToDO
+
     public int getSummary() {
         int sum = 0;
         for (Map.Entry<Prize, Integer> result : resultCount.entrySet()) {
-            sum += (result.getKey().getMoney() * result.getValue());
+            sum += resultCount.compute(result.getKey(), (key, value) -> key.getMoney() * value);
         }
         return sum;
     }
