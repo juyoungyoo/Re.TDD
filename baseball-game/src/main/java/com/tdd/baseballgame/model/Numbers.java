@@ -25,6 +25,7 @@ public class Numbers {
         return new Numbers(distinctDigits);
     }
 
+
     private static List<Digit> setDistinctNumbers(int[] numbers) {
         return IntStream.of(numbers).distinct().mapToObj(Digit::of).collect(Collectors.toList());
     }

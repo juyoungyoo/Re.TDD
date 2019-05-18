@@ -6,7 +6,7 @@ import java.util.*;
 
 public class AnswerResult {
 
-    public static final int ANSWER_TURN_MAX = 9;
+    private static final int ANSWER_TURN_MAX = 9;
     private static int answerTurn;
     private NumbersResult numbersResult;
 
@@ -26,6 +26,10 @@ public class AnswerResult {
             resultTypeMap.computeIfPresent(resultType, (ResultType key, Integer value)-> ++value);
         }
         return resultTypeMap;
+    }
+
+    public static int getAnswerTurn() {
+        return answerTurn;
     }
 
     public boolean isGameOver() {
