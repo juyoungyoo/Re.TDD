@@ -1,8 +1,10 @@
 package com.tdd.baseballgame.model;
 
+import com.tdd.baseballgame.model.result.NumbersResult;
+import com.tdd.baseballgame.model.result.ResultType;
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,60 +29,61 @@ public class NumbersTest {
     @Test
     public void 숫자를_포함한다() {
         Numbers numbers = Numbers.of(1, 2, 3);
-        Number number = Number.of(2);
+        Digit digit = Digit.of(2);
 
-        boolean result = numbers.contain(number);
+        boolean result = numbers.contain(digit);
         assertThat(result).isEqualTo(true);
     }
 
     @Test
     public void 숫자를_포함하지_않는다() {
         Numbers numbers = Numbers.of(1, 2, 3);
-        Number number = Number.of(4);
+        Digit digit = Digit.of(4);
 
-        boolean result = numbers.contain(number);
+        boolean result = numbers.contain(digit);
         assertThat(result).isEqualTo(false);
     }
 
     @Test
     public void 동일한_위치에_동일한_숫자가_존재한다() {
         int index = 1;
-        Number number = Number.of(2);
+        Digit digit = Digit.of(2);
         Numbers numbers = Numbers.of(1, 2, 3);
 
-        boolean result = numbers.match(index, number);
+        boolean result = numbers.match(index, digit);
 
         assertThat(result).isEqualTo(true);
     }
 
     @Test
     public void 결과를_반환한다_스트라이크3() {
-        Numbers numbers =  Numbers.of(1, 2, 3);
-        Numbers numbers2 = Numbers.of(1, 2, 3);
+        NumbersResult expected = getNumberResult(ResultType.STRIKE,ResultType.STRIKE,ResultType.STRIKE);
 
-        List<ResultType> resultTypes = numbers.result(numbers2);
+        NumbersResult resultTypes = Numbers.of(1, 2, 3).result(Numbers.of(1, 2, 3));
 
-        assertThat(resultTypes).containsExactly(ResultType.STRIKE,ResultType.STRIKE,ResultType.STRIKE);
+        assertThat(resultTypes).isEqualTo(expected);
     }
 
     @Test
     public void 결과를_반환한다_스트라이크1_볼2() {
-        Numbers numbers =  Numbers.of(1, 2, 3);
-        Numbers numbers2 = Numbers.of(1, 3, 2);
+        NumbersResult expected = getNumberResult(ResultType.STRIKE,ResultType.BALL,ResultType.BALL);
 
-        List<ResultType> resultTypes = numbers.result(numbers2);
+        NumbersResult resultTypes = Numbers.of(1, 2, 3).result(Numbers.of(1, 3, 2));
 
-        assertThat(resultTypes).containsExactly(ResultType.STRIKE,ResultType.BALL,ResultType.BALL);
+        assertThat(resultTypes).isEqualTo(expected);
     }
 
     @Test
     public void 결과를_반환한다_스트라이크1_아웃2() {
-        Numbers numbers =  Numbers.of(1, 2, 3);
-        Numbers numbers2 = Numbers.of(1, 4, 5);
+        NumbersResult expected = getNumberResult(ResultType.STRIKE,ResultType.OUT,ResultType.OUT);
 
-        List<ResultType> resultTypes = numbers.result(numbers2);
+        NumbersResult resultTypes = Numbers.of(1, 2, 3).result(Numbers.of(1, 4, 5));
 
-        assertThat(resultTypes).containsExactly(ResultType.STRIKE,ResultType.OUT,ResultType.OUT);
+        assertThat(resultTypes).isEqualTo(expected);
+    }
+
+    private NumbersResult getNumberResult(ResultType... resultTypes) {
+        return new NumbersResult(Arrays.asList(resultTypes));
     }
 }
 

@@ -1,4 +1,4 @@
-package com.tdd.baseballgame.model;
+package com.tdd.baseballgame.model.result;
 
 import lombok.Getter;
 
@@ -19,16 +19,17 @@ public enum ResultType {
         this.isMatchLocation = isMatchLocation;
     }
 
-
     public static ResultType of(boolean isContainNumber,
                                 boolean isMatchLocation) {
         return Arrays.stream(ResultType.values())
                 .filter(type -> type.isResultCondition(isContainNumber, isMatchLocation))
-                .findFirst().orElseThrow(IllegalArgumentException::new);
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     private boolean isResultCondition(boolean isContainNumber,
                                       boolean isMatchLocation) {
         return this.isMatchLocation == isMatchLocation && this.isContainNumber == isContainNumber;
     }
+
 }
