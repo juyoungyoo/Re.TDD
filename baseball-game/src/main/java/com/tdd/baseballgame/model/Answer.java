@@ -8,6 +8,7 @@ import java.util.Arrays;
 @Getter
 public class Answer {
 
+    private int tryCount;
     private Numbers numbers;
 
     private Answer(Numbers numbers) {
@@ -32,6 +33,7 @@ public class Answer {
     }
 
     public AnswerResult ask(Numbers numbers) {
-        return new AnswerResult(this.numbers.result(numbers));
+        tryCount++;
+        return new AnswerResult(tryCount, this.numbers.result(numbers));
     }
 }

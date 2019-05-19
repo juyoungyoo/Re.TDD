@@ -6,12 +6,12 @@ import java.util.*;
 
 public class AnswerResult {
 
-    private static final int ANSWER_TURN_MAX = 9;
-    private static int answerTurn;
+    private static final int MAX_TRY_COUNT = 9;
+    private int tryCount;
     private NumbersResult numbersResult;
 
-    public AnswerResult(NumbersResult numbersResult) {
-        answerTurn++;
+    public AnswerResult(int tryCount, NumbersResult numbersResult) {
+        this.tryCount = tryCount;
         this.numbersResult = numbersResult;
     }
 
@@ -28,11 +28,11 @@ public class AnswerResult {
         return resultTypeMap;
     }
 
-    public static int getAnswerTurn() {
-        return answerTurn;
+    public int getTryCount() {
+        return tryCount;
     }
 
     public boolean isGameOver() {
-        return answerTurn == ANSWER_TURN_MAX;
+        return tryCount == MAX_TRY_COUNT;
     }
 }

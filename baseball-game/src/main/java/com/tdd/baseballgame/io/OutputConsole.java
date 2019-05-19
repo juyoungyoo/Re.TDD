@@ -23,7 +23,7 @@ public class OutputConsole {
     }
 
     public static void result(AnswerResult answerResult) {
-        System.out.println(":::::: TURN ::::::: " + answerResult.getAnswerTurn());
+        System.out.println(":::::: TURN ::::::: " + answerResult.getTryCount());
         System.out.println("::::::: RESULT ::::::: ");
         Map<ResultType, Integer> resultType = answerResult.getResult();
         for(Map.Entry<ResultType, Integer> result : resultType.entrySet()){

@@ -30,6 +30,9 @@ public class BaseballGame {
                 System.out.println(e.getMessage());
             }
         } while (!answerResult.isGameOver());
-        System.out.println("Game Over... you lose T_T");
+
+        if(answerResult.isGameOver()){
+            System.out.println("Game Over... you lose T_T");
+        }
     }
 }
