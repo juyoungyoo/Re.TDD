@@ -4,6 +4,7 @@ import com.tdd.baseballgame.model.result.NumbersResult;
 import com.tdd.baseballgame.model.result.ResultType;
 import lombok.Getter;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -21,12 +22,27 @@ public class Numbers {
     }
 
     public static Numbers of(int... numbers) {
-        List<Digit> distinctDigits = setDistinctNumbers(numbers);
+        List<Digit> distinctDigits = toList(numbers);
         return new Numbers(distinctDigits);
     }
 
+    public static Numbers of(String input){
+        String[] inputStr = split(input);
+        return convertNumbers(inputStr);
+    }
 
-    private static List<Digit> setDistinctNumbers(int[] numbers) {
+    private static String[] split(String input) {
+        if(!input.contains(",")){
+            throw new IllegalArgumentException("숫자를 ,로 구분하여 입력해주세요. ex)1,2,3");
+        }
+        return input.split(",");
+    }
+
+    private static Numbers convertNumbers(String[] inputStr) {
+        return Numbers.of(Arrays.stream(inputStr).mapToInt(Integer::new).toArray());
+    }
+
+    private static List<Digit> toList(int[] numbers) {
         return IntStream.of(numbers).distinct().mapToObj(Digit::of).collect(Collectors.toList());
     }
 
@@ -42,10 +58,6 @@ public class Numbers {
         }
     }
 
-    public int size() {
-        return digits.size();
-    }
-
     public boolean contain(Digit digit) {
         return digits.contains(digit);
     }
@@ -57,7 +69,7 @@ public class Numbers {
     public NumbersResult result(Numbers numbers) {
         NumbersResult resultTypes = new NumbersResult();
 
-        for (int i = 0; i < numbers.size(); i++) {
+        for (int i = 0; i < digits.size(); i++) {
             Digit digit = numbers.getDigits().get(i);
             ResultType result = ResultType.of(contain(digit), match(i, digit));
             resultTypes.add(result);

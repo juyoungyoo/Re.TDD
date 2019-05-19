@@ -2,7 +2,8 @@ package com.tdd.baseballgame.model.result;
 
 import com.tdd.baseballgame.model.Numbers;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AnswerResult {
 
@@ -15,8 +16,16 @@ public class AnswerResult {
         this.numbersResult = numbersResult;
     }
 
-    public boolean isCorrect(){
-        return numbersResult.countStrike() == Numbers.SIZE;
+    public boolean isCorrect() {
+        return numbersResult.matchCount(ResultType.STRIKE) == Numbers.SIZE;
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public boolean isGameOver() {
+        return tryCount == MAX_TRY_COUNT;
     }
 
     public Map<ResultType, Integer> getResult() {
@@ -28,11 +37,8 @@ public class AnswerResult {
         return resultTypeMap;
     }
 
-    public int getTryCount() {
-        return tryCount;
+    public int getCountResultType(ResultType resultType){
+        return numbersResult.matchCount(resultType);
     }
 
-    public boolean isGameOver() {
-        return tryCount == MAX_TRY_COUNT;
-    }
 }

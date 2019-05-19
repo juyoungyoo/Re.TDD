@@ -13,7 +13,13 @@ public class NumbersTest {
     @Test
     public void 세자리의_숫자를_생성한다() {
         Numbers numbers = Numbers.of(1, 2, 3);
-        assertThat(numbers.size()).isEqualTo(3);
+        assertThat(numbers.getDigits()).hasSize(3);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void 구분자가_쉼표가_아닐시_에러난다() {
+        String input = "1|3|3";
+        Numbers.of(input);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -57,7 +63,7 @@ public class NumbersTest {
 
     @Test
     public void 결과를_반환한다_스트라이크3() {
-        NumbersResult expected = getNumberResult(ResultType.STRIKE,ResultType.STRIKE,ResultType.STRIKE);
+        NumbersResult expected = getNumberResult(ResultType.STRIKE, ResultType.STRIKE, ResultType.STRIKE);
 
         NumbersResult resultTypes = Numbers.of(1, 2, 3).result(Numbers.of(1, 2, 3));
 
@@ -66,7 +72,7 @@ public class NumbersTest {
 
     @Test
     public void 결과를_반환한다_스트라이크1_볼2() {
-        NumbersResult expected = getNumberResult(ResultType.STRIKE,ResultType.BALL,ResultType.BALL);
+        NumbersResult expected = getNumberResult(ResultType.STRIKE, ResultType.BALL, ResultType.BALL);
 
         NumbersResult resultTypes = Numbers.of(1, 2, 3).result(Numbers.of(1, 3, 2));
 
@@ -75,7 +81,7 @@ public class NumbersTest {
 
     @Test
     public void 결과를_반환한다_스트라이크1_아웃2() {
-        NumbersResult expected = getNumberResult(ResultType.STRIKE,ResultType.OUT,ResultType.OUT);
+        NumbersResult expected = getNumberResult(ResultType.STRIKE, ResultType.OUT, ResultType.OUT);
 
         NumbersResult resultTypes = Numbers.of(1, 2, 3).result(Numbers.of(1, 4, 5));
 

@@ -7,7 +7,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AnswerResultTest {
+public class BaseballGameSummaryTest {
 
     @Test
     public void answer_success_all_strike() {
@@ -32,7 +32,6 @@ public class AnswerResultTest {
 
     private AnswerResult getAnswerResult(ResultType... resultTypes) {
         NumbersResult numbersResult = new NumbersResult(Arrays.asList(resultTypes));
-        return new AnswerResult(numbersResult);
+        return new AnswerResult(1, numbersResult);
     }
-
 }

@@ -1,6 +1,6 @@
 package com.tdd.baseballgame.io;
 
-import com.tdd.baseballgame.model.Answer;
+import com.tdd.baseballgame.model.BaseballGame;
 import com.tdd.baseballgame.model.Digit;
 import com.tdd.baseballgame.model.Numbers;
 import com.tdd.baseballgame.model.result.AnswerResult;
@@ -11,8 +11,8 @@ import java.util.Map;
 
 public class OutputConsole {
 
-    public static void answer(Answer answer) {
-        Numbers numbers = answer.getNumbers();
+    public static void answer(BaseballGame baseballGame) {
+        Numbers numbers = baseballGame.getAnswer();
         List<Digit> digits = numbers.getDigits();
         System.out.println("------------------------");
         System.out.print("DIGIT : ");
@@ -25,9 +25,18 @@ public class OutputConsole {
     public static void result(AnswerResult answerResult) {
         System.out.println("------------------------");
         System.out.println("TURN [" + answerResult.getTryCount() + "]");
-        Map<ResultType, Integer> resultType = answerResult.getResult();
-        for(Map.Entry<ResultType, Integer> result : resultType.entrySet()){
-            System.out.println(result.getKey().name() + ": " + result.getValue());
+        Map<ResultType, Integer> result2 = answerResult.getResult();
+        for(ResultType resultType : result2.keySet()){
+            System.out.println(resultType.name() + ": "+ result2.get(resultType));
+        }
+        System.out.println("------------------------");
+    }
+
+    public static void summary(BaseballGame baseballGame, String message) {
+        System.out.println(message);
+        System.out.println("------------------------");
+        for (ResultType resultType : ResultType.values()) {
+            System.out.println(resultType + ": " + baseballGame.summaryResultType().getCount(resultType) + " / " + baseballGame.summaryResultType().getPercent(resultType));
         }
         System.out.println("------------------------");
     }

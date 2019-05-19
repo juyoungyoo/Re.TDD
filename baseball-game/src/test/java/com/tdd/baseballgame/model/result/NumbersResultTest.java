@@ -11,6 +11,6 @@ public class NumbersResultTest {
     @Test
     public void strike_count_two() {
         NumbersResult numbersResult = new NumbersResult(Arrays.asList(ResultType.STRIKE, ResultType.STRIKE, ResultType.BALL));
-        assertThat(numbersResult.countStrike()).isEqualTo(2);
+        assertThat(numbersResult.matchCount(ResultType.STRIKE)).isEqualTo(2);
     }
 }
