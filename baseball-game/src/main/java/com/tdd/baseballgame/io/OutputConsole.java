@@ -25,9 +25,9 @@ public class OutputConsole {
     public static void result(AnswerResult answerResult) {
         System.out.println("------------------------");
         System.out.println("TURN [" + answerResult.getTryCount() + "]");
-        Map<ResultType, Integer> result2 = answerResult.getResult();
-        for(ResultType resultType : result2.keySet()){
-            System.out.println(resultType.name() + ": "+ result2.get(resultType));
+        Map<ResultType, Integer> result = answerResult.getResult();
+        for(Map.Entry<ResultType, Integer> resultType : result.entrySet()){
+            System.out.println(resultType.getKey() + ": "+ resultType.getValue());
         }
         System.out.println("------------------------");
     }
