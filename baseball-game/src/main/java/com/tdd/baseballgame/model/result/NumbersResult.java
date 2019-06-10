@@ -24,10 +24,9 @@ public class NumbersResult {
         resultTypes.add(result);
     }
 
-    public Long countStrike() {
-        return resultTypes.stream()
-                .filter(type -> type.equals(ResultType.STRIKE))
-                .count();
+    public int matchCount(ResultType resultType) {
+        return Math.toIntExact(resultTypes.stream()
+                .filter(type -> type.equals(resultType))
+                .count());
     }
-
 }

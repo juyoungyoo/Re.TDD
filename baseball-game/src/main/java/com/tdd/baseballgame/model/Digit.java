@@ -19,17 +19,13 @@ public class Digit {
         this.number = number;
     }
 
-    public static Digit of(int number) {
-        return new Digit(number);
-    }
-
-    public static Digit of(String number) {
-        return new Digit(Integer.parseInt(number));
-    }
-
     private void validateNumber(int number) {
         if (MIN > number || MAX < number) {
             throw new IllegalArgumentException(MIN + "~" + MAX + "사이의 숫자만 생성 가능합니다.");
         }
+    }
+
+    public static Digit of(int number) {
+        return new Digit(number);
     }
 }
