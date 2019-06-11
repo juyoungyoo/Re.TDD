@@ -3,8 +3,6 @@ package com.lambda.ex5;
 public class UsingLocalVaiable {
     void method(int arg) {
         int localValue = 40;
-
-
 //        arg = 40;  error
 //        localValue = 40;     error
 
