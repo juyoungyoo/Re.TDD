@@ -1,6 +1,5 @@
 package com.this_is_java.chapter16_stream;
 
-<<<<<<< HEAD
 class Student implements Comparable<Student> {
 
     public enum Sex {
@@ -23,12 +22,6 @@ class Student implements Comparable<Student> {
     private int score;
     private Sex sex;
     private City city;
-=======
-class Student implements Comparable<Student>{
-
-    private String name;
-    private int score;
->>>>>>> master
 
     public Student(String name,
                    int score) {
@@ -36,7 +29,6 @@ class Student implements Comparable<Student>{
         this.score = score;
     }
 
-<<<<<<< HEAD
     public Student(String name,
                    int score,
                    Sex sex) {
@@ -55,8 +47,6 @@ class Student implements Comparable<Student>{
         this.city = city;
     }
 
-=======
->>>>>>> master
     public String getName() {
         return name;
     }
@@ -65,7 +55,6 @@ class Student implements Comparable<Student>{
         return score;
     }
 
-<<<<<<< HEAD
     public Sex getSex() {
         return sex;
     }
@@ -74,8 +63,6 @@ class Student implements Comparable<Student>{
         return city;
     }
 
-=======
->>>>>>> master
     @Override
     public int compareTo(Student o) {
         return Integer.compare(score, o.getScore());
